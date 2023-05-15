@@ -3,6 +3,8 @@ import Home from './src/screens/Home'
 import AppLoading from 'expo-app-loading'
 import { useFonts, Inter_400Regular, Inter_500Medium } from '@expo-google-fonts/inter'
 import { Archivo_400Regular, Archivo_600SemiBold, Archivo_500Medium } from '@expo-google-fonts/archivo'
+import { ThemeProvider } from 'styled-components'
+import theme from './src/styles/theme'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -17,6 +19,8 @@ export default function App() {
     return <AppLoading/>
   }
   return (
-    <Home/> 
+    <ThemeProvider theme={theme}>
+      <Home/> 
+    </ThemeProvider>
   )
 }
