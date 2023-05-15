@@ -5,6 +5,7 @@ import { useFonts, Inter_400Regular, Inter_500Medium } from '@expo-google-fonts/
 import { Archivo_400Regular, Archivo_600SemiBold, Archivo_500Medium } from '@expo-google-fonts/archivo'
 import { ThemeProvider } from 'styled-components'
 import theme from './src/styles/theme'
+import CarDetails from './src/screens/CarDetails'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -20,7 +21,8 @@ export default function App() {
   }
   return (
     <ThemeProvider theme={theme}>
-      <Home/> 
+      {/* <Home/>  */}
+      <CarDetails/>
     </ThemeProvider>
   )
 }
