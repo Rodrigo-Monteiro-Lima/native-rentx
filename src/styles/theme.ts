@@ -19,6 +19,6 @@ export default {
     primary_700: 'Inter_700Bold',
     secondary_400: 'Archivo_400Regular',
     secondary_500: 'Archivo_500Medium',
-    secondary_700: 'Archivo_700Bold',
+    secondary_600: 'Archivo_600SemiBold',
   }
 };
