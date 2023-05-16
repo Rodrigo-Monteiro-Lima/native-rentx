@@ -1,14 +1,22 @@
 import React from 'react'
-import { Container, Content, Title, Message } from './styles'
+import { Container, Content, Title, Message, Footer, LogoWrapper } from './styles'
 import LogoSvg from '../../assets/logo_background_gray.svg'
 import DoneSvg from '../../assets/done.svg'
-import { useWindowDimensions } from 'react-native'
+import { StatusBar, useWindowDimensions } from 'react-native'
+import ConfirmButton from '../../components/ConfirmButton'
 
 export default function SchedulingComplete() {
   const {width} = useWindowDimensions();
   return (
     <Container>
-      <LogoSvg width={width} />
+      <StatusBar
+        barStyle="light-content"
+        translucent
+        backgroundColor="transparent"
+      />
+      <LogoWrapper>
+        <LogoSvg width={width} />
+      </LogoWrapper>
       <Content>
         <DoneSvg width={80} height={80}/>
         <Title>Carro alugado!</Title>
@@ -18,6 +26,9 @@ export default function SchedulingComplete() {
           pegar o seu automóvel.
         </Message>
       </Content>
+      <Footer>
+        <ConfirmButton title='OK' onPress={() => {}}/>
+      </Footer>
     </Container>
   )
 }
