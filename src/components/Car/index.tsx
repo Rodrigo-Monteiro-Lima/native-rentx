@@ -2,19 +2,10 @@ import React from 'react'
 import { Container, Details, Name, About, Rent, Brand, Period, Price, Type, CarImage } from './styles'
 import MotorIcon from '../../assets/car.svg'
 import { RectButtonProps } from 'react-native-gesture-handler'
-
-interface CarProps {
-  brand: string
-  name: string
-  rent: {
-    period: string
-    price: number
-  }
-  thumbnail: string
-}
+import CarDTO from '../../dtos/CarDTO'
 
 interface Props extends RectButtonProps {
-  data: CarProps
+  data: CarDTO
 }
 
 export default function Car({ data: {brand,name,rent: {period, price},thumbnail}, ...rest }: Props) {
