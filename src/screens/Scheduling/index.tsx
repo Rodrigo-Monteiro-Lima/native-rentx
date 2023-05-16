@@ -5,6 +5,7 @@ import ArrowSvg from '../../assets/arrow.svg'
 import { Content, Footer, Container, Header, Title, RentalPeriod, DateInfo, DateTitle, DateValue } from './styles'
 import { StatusBar } from 'react-native'
 import Button from '../../components/Button'
+import Calendar from '../../components/Calendar'
 
 export default function index() {
   const theme = useTheme();
@@ -35,7 +36,7 @@ export default function index() {
         </RentalPeriod>
       </Header>
       <Content>
-
+        <Calendar/>
       </Content>
       <Footer>
         <Button title="Confirmar" onPress={() => {}}/>
