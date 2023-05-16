@@ -1,4 +1,3 @@
-import { View, Text } from 'react-native'
 import React from 'react'
 import { Feather } from '@expo/vector-icons'
 import { Calendar as CustomCalendar, LocaleConfig } from 'react-native-calendars'
@@ -13,13 +12,11 @@ LocaleConfig.locales['pt-br'] = {
 }
 LocaleConfig.defaultLocale = 'pt-br'
 
-type Direction = 'left' | 'right';
-
 export default function Calendar() {
   const theme = useTheme();
   return (
     <CustomCalendar 
-      renderArrow={(direction: Direction) => 
+      renderArrow={(direction) => 
         <Feather 
           size={24}
           color={theme.colors.shape}
