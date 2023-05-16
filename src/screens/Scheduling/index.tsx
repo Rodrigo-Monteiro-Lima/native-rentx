@@ -6,9 +6,18 @@ import { Content, Footer, Container, Header, Title, RentalPeriod, DateInfo, Date
 import { StatusBar } from 'react-native'
 import Button from '../../components/Button'
 import Calendar from '../../components/Calendar'
+import { useNavigation } from '@react-navigation/native'
 
-export default function index() {
+type NavigationProps = {
+  navigate:(screen:string) => void;
+}
+
+export default function Scheduling() {
   const theme = useTheme();
+  const navigation = useNavigation<NavigationProps>();
+  function handleConfirmRental() {
+    navigation.navigate('SchedulingDetails');
+  }
   return (
     <Container>
       <Header>
@@ -39,7 +48,7 @@ export default function index() {
         <Calendar/>
       </Content>
       <Footer>
-        <Button title="Confirmar" onPress={() => {}}/>
+        <Button title="Confirmar" onPress={handleConfirmRental}/>
       </Footer>
     </Container>
   )

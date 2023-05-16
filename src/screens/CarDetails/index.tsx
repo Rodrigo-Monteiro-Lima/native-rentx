@@ -10,9 +10,17 @@ import GasolineSvg from '../../assets/gasoline.svg'
 import ExchangeSvg from '../../assets/exchange.svg'
 import PeopleSvg from '../../assets/people.svg'
 import Button from '../../components/Button'
+import { useNavigation } from '@react-navigation/native'
 
+type NavigationProps = {
+  navigate:(screen:string) => void;
+}
 
 export default function CarDetails() {
+  const navigation = useNavigation<NavigationProps>();
+  function handleConfirmRental() {
+    navigation.navigate('Scheduling')
+  }
   return (
     <Container>
       <Header>
@@ -45,7 +53,7 @@ export default function CarDetails() {
         </About>
       </Content>
       <Footer>
-        <Button title="Confirmar" onPress={() => {}}/>
+        <Button title="Escolher período do aluguel" onPress={handleConfirmRental}/>
       </Footer>
     </Container>
   )
