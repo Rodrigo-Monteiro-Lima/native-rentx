@@ -36,6 +36,8 @@ import CarDTO from '../../dtos/CarDTO'
 import { getAccessoryIcon } from '../../utils/getAccessoryIcon'
 import { format } from 'date-fns'
 import { getPlatformDate } from '../../utils/getPlatformDate'
+import api from '../../services/api'
+import { Alert } from 'react-native'
 
 type NavigationProps = {
   navigate:(screen:string) => void;
@@ -59,8 +61,19 @@ export default function SchedulingDetails() {
   const route = useRoute();
   const { car, dates } = route.params as Params;
   const { brand, name, photos, rent: { period, price }, accessories } = car;
-  function handleConfirmRental() {
-    navigation.navigate('SchedulingComplete')
+  async function handleConfirmRental() {
+    const schedulesByCar = await api.get(`/schedules_bycars/${car.id}`);
+    const unavailable_dates = [
+      ...schedulesByCar.data.unavailable_dates,
+      ...dates
+    ]
+    api.put(`/schedules_bycars/${car.id}`, {
+      id: car.id,
+      unavailable_dates
+    }).then(() => navigation.navigate('SchedulingComplete'))
+    .catch(() => {
+      Alert.alert('Erro', 'Não foi possível confirmar o agendamento.');
+    })
   }
   function handleBack() {
     navigation.goBack();
