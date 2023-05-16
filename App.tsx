@@ -6,6 +6,7 @@ import { Archivo_400Regular, Archivo_600SemiBold, Archivo_500Medium } from '@exp
 import { ThemeProvider } from 'styled-components'
 import theme from './src/styles/theme'
 import Routes from './src/routes'
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -21,7 +22,9 @@ export default function App() {
   }
   return (
     <ThemeProvider theme={theme}>
-      <Routes/>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <Routes/>
+      </GestureHandlerRootView>
     </ThemeProvider>
   )
 }
