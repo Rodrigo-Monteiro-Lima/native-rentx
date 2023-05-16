@@ -41,6 +41,7 @@ import { useNavigation } from '@react-navigation/native'
 
 type NavigationProps = {
   navigate:(screen:string) => void;
+  goBack:() => void;
 }
 
 export default function SchedulingDetails() {
@@ -49,10 +50,13 @@ export default function SchedulingDetails() {
   function handleConfirmRental() {
     navigation.navigate('SchedulingComplete')
   }
+  function handleBack() {
+    navigation.goBack();
+  }
   return (
     <Container>
     <Header>
-      <BackButton onPress={() =>{}}/>
+      <BackButton onPress={handleBack}/>
     </Header>
     <CarImages>
       <ImageSlider imagesUrl={['https://freepngimg.com/thumb/audi/35227-5-audi-rs5-red.png']}/>

@@ -10,7 +10,7 @@ import CarDTO from '../../dtos/CarDTO'
 import { getAccessoryIcon } from '../../utils/getAccessoryIcon'
 
 type NavigationProps = {
-  navigate:(screen:string) => void;
+  navigate:(screen:string, car: object) => void;
   goBack:() => void;
 }
 
@@ -21,9 +21,10 @@ interface Params {
 export default function CarDetails() {
   const navigation = useNavigation<NavigationProps>();
   const route = useRoute();
-  const { car: {about, accessories, brand, name, photos, rent:{period, price}} } = route.params as Params;
+  const { car } = route.params as Params;
+  const { brand, name, rent: { period, price }, about, accessories, photos } = car;
   function handleConfirmRental() {
-    navigation.navigate('Scheduling')
+    navigation.navigate('Scheduling', { car })
   }
   function handleBack() {
     navigation.goBack();
