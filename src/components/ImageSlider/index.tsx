@@ -1,22 +1,47 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { Container, ImageIndexes, ImageIndex, CarImageWrapper, CarImage } from './styles'
+import { FlatList } from 'react-native'
+import { ViewToken } from 'react-native';
 
 interface Props {
   imagesUrl: string[]
 }
 
+interface ChangeImageProps {
+  viewableItems: ViewToken[];
+  changed: ViewToken[];
+}
+
 export default function ImageSlider({ imagesUrl }: Props) {
+  const [activeImageIndex, setActiveImageIndex] = useState(0)
+  const indexChanged = useRef((info: ChangeImageProps) => {
+    const index = info.viewableItems[0].index!;
+    setActiveImageIndex(index)
+  })
   return (
     <Container>
       <ImageIndexes>
-        <ImageIndex active={true}/>
-        <ImageIndex active={false}/>
-        <ImageIndex active={false}/>
-        <ImageIndex active={false}/>
+        {
+          imagesUrl.map((_, index) => (
+            <ImageIndex
+              key={String(index)}
+              active={index === activeImageIndex}
+            />
+          ))
+        }
       </ImageIndexes>
-      <CarImageWrapper>
-        <CarImage source={{ uri: imagesUrl[0] }}/>
-      </CarImageWrapper>
+      <FlatList
+        data={imagesUrl}
+        keyExtractor={key => key}
+        renderItem={({ item }) => (
+          <CarImageWrapper>
+            <CarImage source={{ uri: imagesUrl[0] }}/>
+          </CarImageWrapper>
+        )}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        onViewableItemsChanged={indexChanged.current}
+      />
     </Container>
   )
 }
