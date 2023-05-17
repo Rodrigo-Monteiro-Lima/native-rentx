@@ -8,10 +8,10 @@ import { useTheme } from 'styled-components';
 import { useNavigation } from '@react-navigation/native';
 import { FlatList } from 'react-native-gesture-handler';
 import Car from '../../components/Car';
-import Loading from '../../components/Loading';
 import { AntDesign } from '@expo/vector-icons';
 import { format } from 'date-fns';
 import { getPlatformDate } from '../../utils/getPlatformDate';
+import LoadAnimation from '../../components/LoadAnimation';
 
 type NavigationProps = {
   navigate:(screen:string, car?: object) => void;
@@ -67,7 +67,7 @@ export default function MyCars() {
         </SubTitle>
       </Header>
       {
-        loading ? <Loading/> : (
+        loading ? <LoadAnimation /> : (
           <Content>
         <Appointments>
           <AppointmentsTitle>Agendamentos feitos</AppointmentsTitle>
