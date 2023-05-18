@@ -1,8 +1,11 @@
 import React from 'react'
-import { Container, Header, SubTitle, Title, Footer } from './styles'
+import { Form, Container, Header, SubTitle, Title, Footer } from './styles'
 import { StatusBar } from 'react-native'
 import Button from '../../components/Button'
 import { useTheme } from 'styled-components'
+import Input from '../../components/Input'
+import PasswordInput from '../../components/PasswordInput'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 export default function SignIn() {
   const theme = useTheme();
@@ -16,6 +19,19 @@ export default function SignIn() {
           uma experiência incrível.
         </SubTitle>
       </Header>
+      <Form>
+        <Input 
+          iconName='mail'
+          placeholder='E-mail'
+          keyboardType='email-address'
+          autoCorrect={false}
+          autoCapitalize='none'
+        />
+        <PasswordInput
+          iconName='lock'
+          placeholder='Senha'
+        />
+      </Form>
       <Footer>
         <Button title="Login" onPress={() => {}} enabled={false} loading={false}/>
         <Button title="Criar conta gratuita" onPress={() => {}} enabled={true} loading={false} color={theme.colors.background_secondary} light/> 

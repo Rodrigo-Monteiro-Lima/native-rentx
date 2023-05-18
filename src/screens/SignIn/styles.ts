@@ -10,7 +10,7 @@ export const Container = styled.View`
 
 export const Header = styled.View`
   width: 100%;
-  margin-top: ${ getStatusBarHeight() + 116 }px;
+  margin-top: ${ getStatusBarHeight() + RFValue(96) }px;
 `;
 
 export const Title = styled.Text`
@@ -30,5 +30,9 @@ export const SubTitle = styled.Text`
 
 export const Footer = styled.View`
   width: 100%;
-  margin: 80px 0;
+`;
+
+export const Form = styled.View`
+  width: 100%;
+  margin: ${RFValue(64)}px 0;
 `;
