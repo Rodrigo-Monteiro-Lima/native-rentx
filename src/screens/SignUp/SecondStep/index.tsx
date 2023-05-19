@@ -16,10 +16,15 @@ interface Params {
   }
 }
 
+type NavigationProps = {
+  navigate:(screen:string, obj?: object) => void;
+  goBack:() => void;
+}
+
 export default function SignUpSecondStep() {
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('');
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProps>();
   const theme = useTheme();
   const route = useRoute();
   const { user } = route.params as Params;
@@ -33,12 +38,11 @@ export default function SignUpSecondStep() {
     if (password != passwordConfirm) {
       return Alert.alert('As senhas não são iguais')
     }
-
-    // navigation.navigate('Confirmation', {
-    //   title: 'Conta criada!',
-    //   message: `Agora é só fazer login\ne aproveitar`,
-    //   nextScreenRoute: 'SignIn'
-    // })
+    navigation.navigate('Confirmation', {
+      title: 'Conta criada!',
+      message: `Agora é só fazer login\ne aproveitar`,
+      nextScreen: 'SignIn'
+    })
   }
   return (
     <KeyboardAvoidingView behavior='position' enabled>

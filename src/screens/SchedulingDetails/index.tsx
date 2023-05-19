@@ -40,7 +40,7 @@ import api from '../../services/api'
 import { Alert } from 'react-native'
 
 type NavigationProps = {
-  navigate:(screen:string) => void;
+  navigate:(screen:string, obj?: object) => void;
   goBack:() => void;
 }
 
@@ -78,7 +78,13 @@ export default function SchedulingDetails() {
     api.put(`/schedules_bycars/${car.id}`, {
       id: car.id,
       unavailable_dates
-    }).then(() => navigation.navigate('SchedulingComplete'))
+    }).then(() => {
+      navigation.navigate('Confirmation',{
+        title: 'Carro alugado!',
+        message: `Agora você só precisa ir\naté a concessionária da RENTX\npegar o seu automóvel.`,
+        nextScreen: 'Home'
+      } )
+    })
     .catch(() => {
       Alert.alert('Erro', 'Não foi possível confirmar o agendamento.');
       setLoading(false);
