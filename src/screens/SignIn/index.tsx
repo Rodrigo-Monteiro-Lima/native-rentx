@@ -7,9 +7,15 @@ import Input from '../../components/Input'
 import PasswordInput from '../../components/PasswordInput'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import * as Yup from 'yup'
+import { useNavigation } from '@react-navigation/native'
+
+type NavigationProps = {
+  navigate: (screen: string) => void;
+}
 
 export default function SignIn() {
   const theme = useTheme();
+  const navigation = useNavigation<NavigationProps>();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   async function handleSignIn() {
@@ -26,6 +32,9 @@ export default function SignIn() {
         return Alert.alert('Erro na autenticação', 'Ocorreu um erro ao fazer login, verifique as credenciais')
       }
     }
+  }
+  function handleNewAccount() {
+    navigation.navigate('SignUpFirstStep')
   }
   return (
     <KeyboardAvoidingView
@@ -61,7 +70,7 @@ export default function SignIn() {
           </Form>
           <Footer>
             <Button title="Login" onPress={handleSignIn} enabled={true} loading={false}/>
-            <Button title="Criar conta gratuita" onPress={() => {}} enabled={true} loading={false} color={theme.colors.background_secondary} light/> 
+            <Button title="Criar conta gratuita" onPress={handleNewAccount} enabled={true} loading={false} color={theme.colors.background_secondary} light/> 
           </Footer>
         </Container>
       </TouchableWithoutFeedback>
